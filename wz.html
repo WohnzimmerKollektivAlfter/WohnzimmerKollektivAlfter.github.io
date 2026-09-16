@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Wohnzimmer Alfter – ein selbstorganisierter Kultur- und Begegnungsort für alle.">
+<title>Wohnzimmer Alfter</title>
+<style>
+html{scroll-behavior:smooth;}
+body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.7;margin:0;color:#474747;text-align:left;}
+h1,h2,h3,h4{font-family:Georgia,"Times New Roman",serif;color:#11181F;line-height:1.2;font-weight:600;}
+header.hero{position:relative;min-height:70vh;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;text-align:center;color:#fff;overflow:hidden;}
+header.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.5) contrast(1.02) sepia(.15);}
+header.hero .veil{position:absolute;inset:0;background:linear-gradient(to top,rgba(17,24,31,.72),rgba(17,24,31,.15) 60%,rgba(17,24,31,.1));}
+header.hero .inner{position:relative;z-index:2;padding:60px 20px 48px;display:flex;flex-direction:column;align-items:center;gap:16px;}
+header.hero .logo{position:relative;width:92px;height:92px;object-fit:cover;border-radius:50%;border:3px solid rgba(255,255,255,.85);filter:none;}
+header.hero h1{font-size:clamp(2.4rem,7vw,4rem);letter-spacing:.02em;color:#fff;margin:0;}
+header.hero p.tag{font-family:Georgia,serif;font-style:italic;font-size:clamp(1rem,2.5vw,1.3rem);color:#f5d9c4;margin:14px auto 0;max-width:600px;}
+nav{position:sticky;top:0;z-index:20;background:#ffffff;box-shadow:0 2px 6px rgba(17,24,31,.08);}
+nav ul{list-style:none;margin:0;padding:0;display:flex;justify-content:center;flex-wrap:wrap;}
+nav li{margin:0;}
+nav a{display:block;padding:14px 16px;color:#11181F;text-decoration:none;font-size:.9rem;letter-spacing:.5px;border-bottom:2px solid transparent;}
+nav a:hover{color:#11181F;border-bottom-color:#ffa96b;}
+nav a.active{border-bottom-color:#ffa96b;font-weight:600;}
+main{max-width:760px;margin:0 auto;padding:0 20px;}
+section{padding:70px 0;scroll-margin-top:56px;border-bottom:1px solid #e8e8e8;}
+section:last-of-type{border-bottom:none;}
+section h2{font-size:clamp(1.6rem,3.5vw,2rem);margin:0 0 8px;}
+section .kicker{text-transform:uppercase;letter-spacing:2px;font-size:.75rem;color:#11181F;font-weight:600;margin:0 0 6px;}
+section .lede{font-size:1.1rem;color:#333;letter-spacing:.2px;}
+.panel{background:#fff3ea;border:2px solid #ffa96b;border-radius:4px;padding:26px 26px 6px;margin:28px 0;}
+.panel h3{margin-top:0;}
+.panel p{letter-spacing:.3px;}
+.callout{border-left:6px solid #ffa96b;padding:4px 18px;margin:28px 0;color:#333;}
+.callout p{font-family:Georgia,serif;font-style:italic;font-size:1.15rem;line-height:1.6;margin:0;}
+.schedule{list-style:none;padding:0;margin:18px 0 0;}
+.schedule li{margin-bottom:16px;padding-left:22px;position:relative;}
+.schedule li::before{content:"•";position:absolute;left:2px;color:#ffa96b;font-size:1.2rem;}
+.schedule .when{font-weight:700;color:#11181F;display:block;}
+figure{margin:26px 0;}
+figure img{width:100%;height:auto;display:block;border-radius:4px;filter:saturate(.55) contrast(1.02) sepia(.14);}
+figure.wide img{max-height:420px;object-fit:cover;}
+figcaption{font-size:.8rem;color:#8a8a8a;margin-top:8px;letter-spacing:.3px;}
+.gallery{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:24px 0;}
+.gallery figure{margin:0;}
+.gallery img{width:100%;height:220px;object-fit:cover;border-radius:4px;filter:saturate(.55) contrast(1.02) sepia(.14);}
+.gallery figcaption{font-size:.75rem;}
+ol.steps{padding-left:20px;}
+ol.steps li{margin-bottom:12px;}
+ul.inline-list{list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:8px;}
+ul.inline-list li{background:#fff3ea;border:1px solid #ffa96b;border-radius:999px;padding:7px 14px;font-size:.88rem;color:#11181F;}
+.calendar-placeholder{border:2px dashed #c9c9c9;border-radius:6px;padding:60px 20px;text-align:center;color:#8a8a8a;background:#fafafa;}
+.calendar-placeholder strong{color:#11181F;display:block;margin-bottom:6px;font-family:Georgia,serif;}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:22px;}
+.contact-block{border:1px solid #e8e8e8;border-radius:6px;padding:20px;}
+.contact-block h3{margin-top:0;font-size:1.05rem;}
+.contact-block a{color:#11181F;}
+a{color:#11181F;}
+a:hover{color:#c9781f;}
+.cta{display:inline-block;background:#ffa96b;color:#11181F;text-decoration:none;font-weight:600;padding:12px 22px;border-radius:4px;margin-top:10px;letter-spacing:.5px;}
+.cta:hover{background:#ff9b4d;color:#11181F;}
+footer{text-align:center;margin:50px 0 44px;color:#8a8a8a;font-size:.85rem;}
+footer img{height:56px;width:auto;opacity:.9;margin-bottom:14px;}
+.nav-toggle{display:none;background:none;border:none;cursor:pointer;padding:14px;margin:0;}
+.nav-toggle .bar{display:block;width:22px;height:2px;background:#11181F;margin:5px 0;transition:transform .2s ease,opacity .2s ease;}
+@media(max-width:640px){
+.gallery,.contact-grid{grid-template-columns:1fr;}
+nav ul{display:none;flex-direction:column;align-items:stretch;padding-bottom:6px;}
+nav ul.open{display:flex;}
+nav ul.open a{border-bottom:none;padding:14px 20px;text-align:center;}
+nav ul.open a.active{border-bottom:2px solid #ffa96b;background:#fff3ea;}
+.nav-toggle{display:block;margin-left:auto;}
+nav.open .nav-toggle .bar:nth-child(1){transform:translateY(7px) rotate(45deg);}
+nav.open .nav-toggle .bar:nth-child(2){opacity:0;}
+nav.open .nav-toggle .bar:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+<img src="wz-assets/wohnzimmer-eingang.png" alt="Der Eingang des Wohnzimmers in Alfter">
+<div class="veil"></div>
+<div class="inner">
+<img class="logo" src="wz-assets/wohnzimmer-logo.jpg" alt="Wohnzimmer Logo">
+<h1>Wohnzimmer</h1>
+<p class="tag">Ein selbstorganisierter Kultur- und Begegnungsort in Alfter – für alle offen.</p>
+</div>
+</header>
+
+<nav aria-label="Navigation">
+<button class="nav-toggle" aria-label="Menü öffnen" aria-expanded="false" aria-controls="nav-list">
+<span class="bar"></span><span class="bar"></span><span class="bar"></span>
+</button>
+<ul id="nav-list">
+<li><a class="nav active" href="#news">News</a></li>
+<li><a class="nav" href="#kalender">Kalender</a></li>
+<li><a class="nav" href="#wohnzimmer">Was ist das Wohnzimmer</a></li>
+<li><a class="nav" href="#mitglied">Mitglied werden</a></li>
+<li><a class="nav" href="#kontakt">Kontakt</a></li>
+</ul>
+</nav>
+
+<main>
+
+<section id="news">
+<p class="kicker">News</p>
+<h2>Zukunftswerkstatt</h2>
+<p class="lede">Warum eine Zukunftskonferenz?</p>
+<p>Das Wohnzimmer ist ein Ort für Begegnung, Nachbarschaft und gemeinsames Gestalten. In den letzten Jahren ist hier viel entstanden: Gruppen, Gespräche, Ideen, Projekte und Beziehungen. Gleichzeitig steht das Wohnzimmer wie auch der Ort Alfter vor Veränderungen.</p>
+<p>Mit dem angekündigten Wegzug der Alanus Hochschule im nächsten Jahr verändert sich das Umfeld unseres Hauses spürbar. Das ist ein Einschnitt, aber auch eine Einladung, gemeinsam hinzuschauen: Was braucht das Wohnzimmer jetzt? Wie kann daraus ein Raum für alle bleiben und weiter wachsen? Und wer möchte mit anpacken und dem Wohnzimmer Zukunft geben?</p>
+<p>Wir laden alle ein, die Lust mitzudiskutieren und mitzuwirken haben – ob ihr das Wohnzimmer schon lange kennt oder ganz neu dazukommt. Gemeinsam wollen wir Geschichten teilen, Möglichkeiten sammeln, nächste Schritte entwickeln und die Zukunft des Wohnzimmers in die Nachbarschaft tragen.</p>
+<p><strong>Alle sind willkommen.</strong> Kommt vorbei, bringt eure Perspektiven mit und gestaltet mit uns das nächste Kapitel des Wohnzimmers.</p>
+
+<div class="panel">
+<h3>Programm</h3>
+<ul class="schedule">
+<li><span class="when">Fr. 11.09., ab 19:00 Uhr</span>Offene Willkommens-Kantine</li>
+<li><span class="when">Sa. 12.09., 10–18 Uhr</span>Ideen und Visionen sammeln</li>
+<li><span class="when">So. 13.09., 10–15 Uhr</span>Pläne schmieden und aktiv werden</li>
+</ul>
+<p>Das Wochenende ist flexibel gestaltet – einzelne Sessions können auch separat besucht werden.</p>
+<p><em>Konkreter Plan folgt!</em></p>
+</div>
+
+<p><strong>Anmeldung und Fragen:</strong> <a href="mailto:post@wohnzimmer-alfter.de">post@wohnzimmer-alfter.de</a></p>
+</section>
+
+<section id="kalender">
+<p class="kicker">Kalender</p>
+<h2>Regelmäßige Termine &amp; Veranstaltungen</h2>
+<p class="lede">Unser Raum lebt von dem, was ihr daraus macht – von der Kantine für Alle über Workshops bis zum Repair-Café. Hier findet ihr die aktuellen Termine.</p>
+
+<!--
+  Platzhalter für das Nextcloud Kalender-Embed.
+  Ersetze den Block unten durch dein eigenes iframe, z.B.:
+  <iframe src="https://deine.nextcloud.cloud/apps/calendar/embed/..." width="100%" height="600" style="border:0"></iframe>
+-->
+
+<iframe
+    src="https://wohnzimmer-cloud.wohnzimmer-alfter.de/apps/calendar/embed/zEaiD8NMbeGYCrFg"
+    width="100%"
+    height="600"
+    style="border:0;"
+    frameborder="0">
+</iframe>
+</section>
+
+<section id="wohnzimmer">
+<p class="kicker">Was ist das Wohnzimmer</p>
+<h2>Ein Raum für alle</h2>
+<p class="lede">Welche Räume braucht Kultur, die für Alle zugänglich ist und Verbindung schafft?</p>
+<p>Das Wohnzimmer.Kollektiv in Alfter ist ein selbstorganisierter Kultur- und Begegnungsort, der die Nachbarschaft belebt und durch eine Gemeinschaft von aktiven Ehrenamtlichen getragen und geformt wird.</p>
+<p>Hier finden Veranstaltungen unterschiedlicher Art statt: Kantine für Alle, Konzerte, Workshops, Yoga, Repair-Cafés, Lesekreise, engagierte Initiativen, Ausstellungen, Kleidertauschpartys und vieles mehr.</p>
+<p>Alle Veranstaltungen sind kostenlos zugänglich und basieren auf dem Prinzip der Tauschlogikfreiheit. Wir verlangen keinen festen Eintritt, sondern finanzieren uns über Spenden und Mitgliedsbeiträge.</p>
+
+<div class="gallery">
+<figure><img src="wz-assets/wohnzimmer-gemeinsamer-workshop.jpg" alt="Gemeinsamer Workshop im Wohnzimmer"><figcaption>Gemeinsamer Workshop</figcaption></figure>
+<figure><img src="wz-assets/wohnzimmer-konzertbuehne.jpg" alt="Konzertbühne im Wohnzimmer"><figcaption>Konzertbühne</figcaption></figure>
+</div>
+
+<div class="panel">
+<h3>Du hast eine Veranstaltungsidee?</h3>
+<p>Das Wohnzimmer ist dafür gedacht, dass du es nutzen kannst, <strong>ohne Raummiete zahlen zu müssen</strong>. Hier kann grundsätzlich jede Art von Veranstaltung stattfinden – ob einmalig, regelmäßig, öffentlich und auf Spendenbasis oder im geschlossenen Rahmen.</p>
+<p>Der Raum steht mit Sofas, Kamin, Klavier, Küche, Beamer, Soundanlage, Tischen, Stühlen und leckeren Getränken für euch bereit. Alles beweglich und wandelbar. Und die Menschen in Alfter sollen von deinem Angebot erfahren? Die Infos zu deiner Veranstaltung können wir über unsere Werbe-Kanäle und im Schaufenster ankündigen.</p>
+
+<h3>So geht's</h3>
+<ol class="steps">
+<li>Schick eine E-Mail mit deiner Anfrage an <a href="mailto:kulturkost@wohnzimmer-alfter.de">kulturkost@wohnzimmer-alfter.de</a>.</li>
+<li>Dann erhältst du den Zugang zum Online-Kalender, um einen passenden Termin auszuwählen. Das E-Mail-Team beantwortet gerne alle deine Fragen.</li>
+<li>Bei Bedarf bewerben wir deine öffentliche Veranstaltung. Dafür brauchen wir eine kurze Beschreibung mit allen wichtigen Infos und im Idealfall dazu ein Plakat.</li>
+<li>Vor der Veranstaltung geben wir dir eine Einführung in den Raum – und schon kann's losgehen!</li>
+</ol>
+</div>
+
+<figure class="wide">
+<img src="wz-assets/wohnzimmer-image-essen.webp" alt="Gemeinsames Essen im Wohnzimmer">
+<figcaption>Kantine für Alle</figcaption>
+</figure>
+
+<p class="callout">Kickerturniere, Kleidertauschpartys, Filmabende, Werkeln, Saatgut-Börsen, Co-Working, Flohmärkte, Diskussionsrunden – alles ist möglich.</p>
+</section>
+
+<section id="mitglied">
+<p class="kicker">Mitglied werden</p>
+<h2>Sei Teil des Kollektivs</h2>
+<p>Du willst Mitglied werden im Wohnzimmer Kollektiv? Ab <strong>4&nbsp;€ im Monat</strong> kannst du mit deinem Mitgliedsbeitrag das Wohnzimmer unterstützen.</p>
+<p>Mit einer Mitgliedschaft bist du Teil des Kollektivs, das in Alfter selbstorganisierte Kulturkost für alle ermöglicht.</p>
+<a class="cta" href="wz-assets/Mitgliederantrag.pdf" download>Jetzt Mitglied werden (PDF)</a>
+</section>
+
+<section id="kontakt">
+<p class="kicker">Kontakt</p>
+<h2>Finde uns</h2>
+<p class="lede">Kulturkost Wohnzimmer · Knipsgasse 43 · 53347 Alfter</p>
+
+<div class="contact-grid">
+<div class="contact-block">
+<h3>Allgemeine Anfragen</h3>
+<p>post@<br><a href="mailto:post@wohnzimmer-alfter.de">wohnzimmer-alfter.de</a></p>
+</div>
+
+<div class="contact-block">
+<h3>Raumnutzung &amp; Veranstaltungen</h3>
+<p>kulturkost@<br><a href="mailto:kulturkost@wohnzimmer-alfter.de">wohnzimmer-alfter.de</a></p>
+</div>
+
+<div class="contact-block">
+<h3>Social Media</h3>
+<p>
+<a href="https://www.instagram.com/wohnzimmer_alfter" target="_blank" rel="noopener noreferrer">
+Instagram
+</a>
+<br>
+<a href="https://t.me/wohnzimmer_alfter" target="_blank" rel="noopener noreferrer">
+Telegram
+</a>
+</p>
+</div>
+</div>
+</section>
+
+</main>
+
+<footer>
+<img src="wz-assets/wohnzimmer-logo.jpg" alt="Wohnzimmer Logo">
+<p>Wohnzimmer Kollektiv · Knipsgasse 43 · 53347 Alfter</p>
+</footer>
+
+<script>
+document.addEventListener("DOMContentLoaded",()=>{
+const links=document.querySelectorAll(".nav");
+const nav=document.querySelector("nav");
+const toggle=document.querySelector(".nav-toggle");
+let menuScrollTimer=null;
+
+const closeMenu=()=>{
+  nav.classList.remove("open");
+  document.getElementById("nav-list").classList.remove("open");
+  toggle.setAttribute("aria-expanded","false");
+  toggle.setAttribute("aria-label","Menü öffnen");
+};
+const openMenu=()=>{
+  nav.classList.add("open");
+  document.getElementById("nav-list").classList.add("open");
+  toggle.setAttribute("aria-expanded","true");
+  toggle.setAttribute("aria-label","Menü schließen");
+};
+
+toggle.addEventListener("click",()=>{
+  const isOpen=document.getElementById("nav-list").classList.contains("open");
+  isOpen?closeMenu():openMenu();
+});
+
+links.forEach(link=>{
+  link.addEventListener("click",e=>{
+    e.preventDefault();
+    closeMenu();
+    if(menuScrollTimer!==null) return;
+    menuScrollTimer=setTimeout(()=>menuScrollTimer=null,666);
+    document.querySelector(".nav.active")?.classList.remove("active");
+    link.classList.add("active");
+    history.pushState(null,"",link.getAttribute("href"));
+    document.querySelector(link.getAttribute("href")).scrollIntoView();
+  });
+});
+
+window.addEventListener("scroll",()=>{
+  if(menuScrollTimer!==null) return;
+  const scrollPos=window.scrollY;
+  for(let i=links.length-1;i>=0;i--){
+    const target=document.querySelector(links[i].getAttribute("href"));
+    if(!target) continue;
+    if(scrollPos>=target.offsetTop-80){
+      document.querySelector(".nav.active")?.classList.remove("active");
+      links[i].classList.add("active");
+      break;
+    }
+  }
+});
+
+document.addEventListener("click",e=>{
+  if(!e.target.closest("nav")) closeMenu();
+});
+document.addEventListener("keydown",e=>{
+  if(e.key==="Escape") closeMenu();
+});
+});
+</script>
+
+</body>
+</html>
