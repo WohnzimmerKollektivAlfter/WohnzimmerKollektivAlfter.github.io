@@ -332,7 +332,8 @@ links.forEach(link=>{
 window.addEventListener("scroll",()=>{
   if(menuScrollTimer!==null) return;
   const scrollPos=window.scrollY;
-  const isAtBottom = (window.innerHeight + window.scrollY) >= document.body.offsetHeight - 100;
+  const scrollHeight = document.documentElement.scrollHeight;
+  const isAtBottom = (window.innerHeight + window.scrollY) >= scrollHeight - 50;
   
   document.querySelector(".nav.active")?.classList.remove("active");
   
