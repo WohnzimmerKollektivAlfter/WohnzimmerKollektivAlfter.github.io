@@ -389,6 +389,8 @@ links.forEach(link=>{
 });
 
 window.addEventListener("scroll",()=>{
+  if (document.getElementById("nav-list").classList.contains("open")) closeMenu();
+
   if(menuScrollTimer!==null) return;
   const scrollPos=window.scrollY;
   const scrollHeight = document.documentElement.scrollHeight;
