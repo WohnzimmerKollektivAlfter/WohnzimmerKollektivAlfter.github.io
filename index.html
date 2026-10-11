@@ -11,7 +11,7 @@ body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-
 h1,h2,h3,h4{font-family:Georgia,"Times New Roman",serif;color:#11181F;line-height:1.2;font-weight:600;}
 header.hero{position:relative;min-height:70vh;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;text-align:center;color:#fff;overflow:hidden;}
 header.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.5) contrast(1.02) sepia(.15);}
-header.hero .veil{position:absolute;inset:0;background:linear-gradient(to top,rgba(17,24,31,.82) 0%,rgba(17,24,31,.82) 60%,rgba(17,24,31,.15) 100%);}
+header.hero .veil{position:absolute;inset:0;background:linear-gradient(to top,rgba(17,24,31,.72),rgba(17,24,31,.15) 60%,rgba(17,24,31,.1));}
 header.hero .inner{position:relative;z-index:2;padding:60px 20px 48px;display:flex;flex-direction:column;align-items:center;gap:16px;}
 header.hero .logo{position:relative;width:92px;height:92px;object-fit:cover;border-radius:50%;border:3px solid rgba(255,255,255,.85);filter:none;}
 header.hero h1{font-size:clamp(2.4rem,7vw,4rem);letter-spacing:.02em;color:#fff;margin:0;}
@@ -109,6 +109,21 @@ footer img{height:56px;width:auto;opacity:.9;margin-bottom:14px;}
   outline-offset: 3px;
 }
 
+header.hero .hero-copy {
+  width: min(600px, calc(100vw - 40px));
+  box-sizing: border-box;
+  padding: 12px 20px;
+  background: #fff3ea;
+  border: 2px solid #ffa96b;
+  border-radius: 10px;
+  text-align: center;
+}
+
+header.hero .hero-copy h1,
+header.hero .hero-copy p.tag {
+  color: #11181f;
+}
+
 </style>
 </head>
 <body>
@@ -118,8 +133,9 @@ footer img{height:56px;width:auto;opacity:.9;margin-bottom:14px;}
 <div class="veil"></div>
 <div class="inner">
 <img class="logo" src="assets/wohnzimmer-logo.jpg" alt="Wohnzimmer Logo">
-<h1>Wohnzimmer</h1>
-<p class="tag">Ein selbstorganisierter Kultur- und Begegnungsort in Alfter – für alle offen.</p>
+<div class="hero-copy">
+  <h1>Wohnzimmer</h1>
+  <p class="tag">Ein selbstorganisierter Kultur- und Begegnungsort in Alfter – für alle offen.</p>
 </div>
 </header>
 
