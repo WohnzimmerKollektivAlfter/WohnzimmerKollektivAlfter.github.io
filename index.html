@@ -7,7 +7,27 @@
 <title>Wohnzimmer Alfter</title>
 <style>
 html{scroll-behavior:smooth;}
-body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.7;margin:0;color:#474747;text-align:left;}
+:root {
+  --color-text: #474747;
+  --color-heading: #11181F;
+  --color-link: #11181F;
+  --color-text-strong: #333;
+  --color-text-muted: #595959;
+  --color-text-faint: #8a8a8a;
+
+  --color-background: #ffffff;
+  --color-surface-soft: #fff3ea;
+  --color-surface-placeholder: #fafafa;
+
+  --color-border: #e8e8e8;
+  --color-border-placeholder: #c9c9c9;
+  --color-border-mobile: #f0f0f0;
+
+  --color-accent: #ffa96b;
+  --color-accent-hover: #ff9b4d;
+  --color-link-hover: #8f4c16;
+}
+body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.7;margin:0;color:var(--color-text);text-align:left;}
 h1,h2,h3,h4{font-family:Georgia,"Times New Roman",serif;color:#11181F;line-height:1.2;font-weight:600;}
 header.hero{position:relative;min-height:70vh;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;text-align:center;color:#fff;overflow:hidden;}
 header.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.5) contrast(1.02) sepia(.15);}
