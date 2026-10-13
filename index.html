@@ -41,26 +41,26 @@ nav ul{list-style:none;margin:0;padding:0;display:flex;justify-content:center;fl
 nav li{margin:0;}
 nav a{display:block;padding:14px 16px;color:var(--color-link);text-decoration:none;font-size:.9rem;letter-spacing:.5px;border-bottom:2px solid transparent;}
 nav a:hover{color:var(--color-link);border-bottom-color:var(--color-accent);}
-nav a.active{border-bottom-color:#ffa96b;font-weight:600;}
+nav a.active{border-bottom-color:var(--color-accent);font-weight:600;}
 main{max-width:760px;margin:0 auto;padding:0 20px;}
-section{padding:70px 0;scroll-margin-top:56px;border-bottom:1px solid #e8e8e8;}
+section{padding:70px 0;scroll-margin-top:56px;border-bottom:1px solid var(--color-border);}
 section:last-of-type{border-bottom:none;}
 section h2{font-size:clamp(1.6rem,3.5vw,2rem);margin:0 0 8px;}
-section .kicker{text-transform:uppercase;letter-spacing:2px;font-size:1rem;color:#11181F;font-weight:600;margin:0 0 6px;}
-section .lede{font-size:1.1rem;color:#333;letter-spacing:.2px;}
-.panel{background:#fff3ea;border:2px solid #ffa96b;border-radius:4px;padding:26px 26px 6px;margin:28px 0;}
+section .kicker{text-transform:uppercase;letter-spacing:2px;font-size:1rem;color:var(--color-heading);font-weight:600;margin:0 0 6px;}
+section .lede{font-size:1.1rem;color:var(--color-text-strong);letter-spacing:.2px;}
+.panel{background:var(--color-surface-soft);border:2px solid var(--color-accent);border-radius:4px;padding:26px 26px 6px;margin:28px 0;}
 .panel h3{margin-top:0;}
 .panel p{letter-spacing:.3px;}
-.callout{border-left:6px solid #ffa96b;padding:4px 18px;margin:28px 0;color:#333;}
+.callout{border-left:6px solid var(--color-accent);padding:4px 18px;margin:28px 0;color:var(--color-text-strong);}
 .callout p{font-family:Georgia,serif;font-style:italic;font-size:1.15rem;line-height:1.6;margin:0;}
 .schedule{list-style:none;padding:0;margin:18px 0 0;}
 .schedule li{margin-bottom:16px;padding-left:22px;position:relative;}
-.schedule li::before{content:"•";position:absolute;left:2px;color:#ffa96b;font-size:1.2rem;}
-.schedule .when{font-weight:700;color:#11181F;display:block;}
+.schedule li::before{content:"•";position:absolute;left:2px;color:var(--color-accent);font-size:1.2rem;}
+.schedule .when{font-weight:700;color:var(--color-heading);}
 figure{margin:26px 0;}
 figure img{width:100%;height:auto;display:block;border-radius:4px;filter:saturate(.55) contrast(1.02) sepia(.14);}
 figure.wide img{max-height:420px;object-fit:cover;}
-figcaption{font-size:1rem;color:#595959;margin-top:8px;letter-spacing:normal;line-height:1.5;}
+figcaption{font-size:1rem;color:var(--color-text-muted);margin-top:8px;letter-spacing:normal;line-height:1.5;}
 .gallery{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:24px 0;}
 .gallery figure{margin:0;}
 .gallery img{width:100%;height:220px;object-fit:cover;border-radius:4px;filter:saturate(.55) contrast(1.02) sepia(.14);}
@@ -68,21 +68,21 @@ figcaption{font-size:1rem;color:#595959;margin-top:8px;letter-spacing:normal;lin
 ol.steps{padding-left:20px;}
 ol.steps li{margin-bottom:12px;}
 ul.inline-list{list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:8px;}
-ul.inline-list li{background:#fff3ea;border:1px solid #ffa96b;border-radius:999px;padding:7px 14px;font-size:.88rem;color:#11181F;}
-.calendar-placeholder{border:2px dashed #c9c9c9;border-radius:6px;padding:60px 20px;text-align:center;color:#8a8a8a;background:#fafafa;}
-.calendar-placeholder strong{color:#11181F;display:block;margin-bottom:6px;font-family:Georgia,serif;}
+ul.inline-list li{background:var(--color-surface-soft);border:1px solid var(--color-accent);border-radius:999px;padding:7px 14px;font-size:.88rem;color:var(--color-heading);}
+.calendar-placeholder{border:2px dashed var(--color-border-placeholder);border-radius:6px;padding:60px 20px;text-align:center;color:var(--color-text-faint);background:var(--color-surface-placeholder);}
+.calendar-placeholder strong{color:var(--color-heading);display:block;margin-bottom:6px;font-family:Georgia,serif;}
 .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:22px;}
-.contact-block{border:1px solid #e8e8e8;border-radius:6px;padding:20px;}
+.contact-block{border:1px solid var(--color-border);border-radius:6px;padding:20px;}
 .contact-block h3{margin-top:0;font-size:1.05rem;}
-.contact-block a{color:#11181F;}
-a{color:#11181F;}
-a:hover{color:#8f4c16;}
-.cta{display:inline-block;background:#ffa96b;color:#11181F;text-decoration:none;font-weight:600;padding:12px 22px;border-radius:4px;margin-top:10px;letter-spacing:.5px;}
-.cta:hover{background:#ff9b4d;color:#11181F;}
-footer{text-align:center;margin:50px 0 44px;color:#8a8a8a;font-size:.85rem;}
+.contact-block a{color:var(--color-link);}
+a{color:var(--color-link);}
+a:hover{color:var(--color-link-hover);}
+.cta{display:inline-block;background:var(--color-accent);color:var(--color-link);text-decoration:none;font-weight:600;padding:12px 22px;border-radius:4px;margin-top:10px;letter-spacing:.5px;}
+.cta:hover{background:var(--color-accent-hover);color:var(--color-link);}
+footer{text-align:center;margin:50px 0 44px;color:var(--color-text-faint);font-size:.85rem;}
 footer img{height:56px;width:auto;opacity:.9;margin-bottom:14px;}
 .nav-toggle{display:none;background:none;border:none;cursor:pointer;padding:14px;margin:0;}
-.nav-toggle .bar{display:block;width:22px;height:2px;background:#11181F;margin:5px 0;transition:transform .2s ease,opacity .2s ease;}
+.nav-toggle .bar{display:block;width:22px;height:2px;background:var(--color-heading);margin:5px 0;transition:transform .2s ease,opacity .2s ease;}
 @media (max-width: 640px) {
   .gallery,
   .contact-grid {
@@ -105,7 +105,7 @@ footer img{height:56px;width:auto;opacity:.9;margin-bottom:14px;}
     left: 0;
     right: 0;
     flex-direction: column;
-    background: #ffffff;
+    background: var(--color-background);
     box-shadow: 0 4px 12px rgba(17, 24, 31, .12);
     z-index: 1;
     padding: 0;
@@ -114,13 +114,13 @@ footer img{height:56px;width:auto;opacity:.9;margin-bottom:14px;}
   nav ul.open a {
     padding: 10px 20px;
     text-align: center;
-    border-bottom: 1px solid #f0f0f0;
+    border-bottom: 1px solid var(--color-border-mobile);
     border-left: 4px solid transparent;
   }
 
   nav ul.open a.active {
-    border-left-color: #ffa96b;
-    background: #fff3ea;
+    border-left-color: var(--color-accent);
+    background: var(--color-surface-soft);
     font-weight: 600;
   }
 
@@ -134,7 +134,7 @@ footer img{height:56px;width:auto;opacity:.9;margin-bottom:14px;}
   nav.open .nav-toggle .bar:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
 
 :focus-visible {
-  outline: 3px solid #8f4c16;
+  outline: 3px solid var(--color-link-hover);
   outline-offset: 3px;
 }
 
@@ -374,11 +374,11 @@ header.hero .hero-copy {
 <footer>
   <img src="assets/wohnzimmer-logo.jpg" alt="Wohnzimmer Logo">
   
-  <p style="color: rgb(51, 51, 51); background-color: rgb(255, 255, 255);">
+<p style="color: var(--color-text-strong); background-color: var(--color-background);">
     Wohnzimmer.Kollektiv e. V. · Knipsgasse 43 · 53347 Alfter
   </p>
   
-  <p style="font-size: 0.85em; color: rgb(89, 89, 89); background-color: rgb(255, 255, 255);">
+<p style="font-size: 0.85em; color: var(--color-text-muted); background-color: var(--color-background);">
     Webseite erstellt von <a href="https://jocho.de" target="_blank" rel="noopener">Jocho</a> & dem Wohnzimmer.Kollektiv
   </p>
 </footer>
