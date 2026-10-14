@@ -281,8 +281,8 @@ header.hero .hero-copy {
 <button
   class="theme-toggle"
   type="button"
-  aria-label="Dunkelmodus aktivieren"
-  title="Dunkelmodus aktivieren"
+  aria-label="Dunklen Modus aktivieren"
+  title="Dunklen Modus aktivieren"
 >
   <svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true">
     <circle cx="12" cy="12" r="4"></circle>
@@ -601,8 +601,8 @@ document.addEventListener("keydown",e=>{
 
   function updateThemeLabel() {
     const label = currentTheme() === "dark"
-      ? "Hellmodus aktivieren"
-      : "Dunkelmodus aktivieren";
+      ? "Hellen Modus aktivieren"
+      : "Dunklen Modus aktivieren";
 
     themeToggle.setAttribute("aria-label", label);
     themeToggle.title = label;
