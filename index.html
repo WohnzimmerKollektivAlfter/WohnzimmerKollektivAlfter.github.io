@@ -29,8 +29,27 @@ html{scroll-behavior:smooth;}
   --color-accent-hover: #ff9b4d;
   --color-link-hover: #8f4c16;
 }
+
+:root[data-theme="dark"] {
+  --color-text: #f2f2f2;
+  --color-heading: #ffffff;
+  --color-link: #ffd19e;
+  --color-text-strong: #ffffff;
+  --color-text-muted: #d0d0d0;
+  --color-text-faint: #b8b8b8;
+  --color-background: #101010;
+  --color-surface-soft: #191919;
+  --color-surface-placeholder: #191919;
+  --color-border: #767676;
+  --color-border-placeholder: #767676;
+  --color-border-mobile: #767676;
+  --color-accent: #ffb477;
+  --color-accent-hover: #ffc890;
+  --color-link-hover: #ffe0bd;
+}
+
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
     --color-text: #f2f2f2;
     --color-heading: #ffffff;
     --color-link: #ffd19e;
@@ -66,6 +85,59 @@ nav li{margin:0;}
 nav a{display:block;padding:14px 16px;color:var(--color-link);text-decoration:none;font-size:.9rem;letter-spacing:.5px;border-bottom:2px solid transparent;}
 nav a:hover{color:var(--color-link);border-bottom-color:var(--color-accent);}
 nav a.active{border-bottom-color:var(--color-accent);font-weight:600;}
+.theme-toggle {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: var(--color-accent);
+  color: var(--color-heading);
+  cursor: pointer;
+}
+
+.theme-icon {
+  width: 21px;
+  height: 21px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.theme-icon-sun {
+  display: none;
+}
+
+.theme-icon-moon {
+  display: block;
+}
+
+:root[data-theme="dark"] .theme-icon-sun {
+  display: block;
+}
+
+:root[data-theme="dark"] .theme-icon-moon {
+  display: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) .theme-icon-sun {
+    display: block;
+  }
+
+  :root:not([data-theme]) .theme-icon-moon {
+    display: none;
+  }
+}
+
 main{max-width:760px;margin:0 auto;padding:0 20px;}
 section{padding:70px 0;scroll-margin-top:56px;border-bottom:1px solid var(--color-border);}
 section:last-of-type{border-bottom:none;}
@@ -118,7 +190,11 @@ footer img{height:56px;width:auto;opacity:.9;margin-bottom:14px;}
     display: block;
     margin-left: auto;
   }
-  
+
+  .theme-toggle {
+    right: 64px;
+}
+ 
   nav ul {
     display: none;
   }
@@ -480,5 +556,38 @@ document.addEventListener("keydown",e=>{
 });
 </script>
 
+<script>
+  const themeToggle = document.querySelector(".theme-toggle");
+  const root = document.documentElement;
+  const storageKey = "wohnzimmer-theme";
+  const savedTheme = localStorage.getItem(storageKey);
+  const systemDark = window.matchMedia("(prefers-color-scheme: dark)");
+
+  if (savedTheme === "light" || savedTheme === "dark") {
+    root.dataset.theme = savedTheme;
+  }
+
+  function currentTheme() {
+    return root.dataset.theme || (systemDark.matches ? "dark" : "light");
+  }
+
+  function updateThemeLabel() {
+    const label = currentTheme() === "dark"
+      ? "Hellmodus aktivieren"
+      : "Dunkelmodus aktivieren";
+
+    themeToggle.setAttribute("aria-label", label);
+    themeToggle.title = label;
+  }
+
+  updateThemeLabel();
+
+  themeToggle.addEventListener("click", () => {
+    root.dataset.theme = currentTheme() === "dark" ? "light" : "dark";
+    localStorage.setItem(storageKey, root.dataset.theme);
+    updateThemeLabel();
+  });
+</script>
+  
 </body>
 </html>
