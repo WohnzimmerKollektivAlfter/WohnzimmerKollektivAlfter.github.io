@@ -222,8 +222,8 @@ a:hover{color:var(--color-link-hover);}
     background: var(--color-background);
     box-shadow: 0 4px 12px rgba(17, 24, 31, .12);
     z-index: 1;
-    height: calc(100vh - 56px);
-    height: calc(100dvh - 56px);
+    max-height: calc(100vh - 56px);
+    max-height: calc(100dvh - 56px);
     overflow-y: auto;
     overscroll-behavior-y: contain;
     padding: 0;
@@ -559,22 +559,39 @@ const nav=document.querySelector("nav");
 const toggle=document.querySelector(".nav-toggle");
 let menuScrollTimer=null;
 
-const closeMenu=()=>{
+const closeMenu = () => {
+  const menu = document.getElementById("nav-list");
+
   nav.classList.remove("open");
-  document.getElementById("nav-list").classList.remove("open");
-  toggle.setAttribute("aria-expanded","false");
-  toggle.setAttribute("aria-label","Menü öffnen");
-};
-const openMenu=()=>{
-  nav.classList.add("open");
-  document.getElementById("nav-list").classList.add("open");
-  toggle.setAttribute("aria-expanded","true");
-  toggle.setAttribute("aria-label","Menü schließen");
+  menu.classList.remove("open");
+  menu.style.removeProperty("max-height");
+
+  toggle.setAttribute("aria-expanded", "false");
+  toggle.setAttribute("aria-label", "Menü öffnen");
 };
 
-toggle.addEventListener("click",()=>{
-  const isOpen=document.getElementById("nav-list").classList.contains("open");
-  isOpen?closeMenu():openMenu();
+const openMenu = () => {
+  const menu = document.getElementById("nav-list");
+
+  nav.classList.add("open");
+  menu.classList.add("open");
+
+  const viewportHeight =
+    window.visualViewport?.height ?? window.innerHeight;
+  const availableHeight = Math.max(
+    0,
+    viewportHeight - nav.getBoundingClientRect().bottom
+  );
+
+  menu.style.maxHeight = `${availableHeight}px`;
+
+  toggle.setAttribute("aria-expanded", "true");
+  toggle.setAttribute("aria-label", "Menü schließen");
+};
+
+toggle.addEventListener("click", () => {
+  const isOpen = document.getElementById("nav-list").classList.contains("open");
+  isOpen ? closeMenu() : openMenu();
 });
 
 links.forEach(link=>{
