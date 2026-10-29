@@ -563,18 +563,7 @@ document.addEventListener("DOMContentLoaded",()=>{
 const links=document.querySelectorAll(".nav");
 const nav=document.querySelector("nav");
 const toggle=document.querySelector(".nav-toggle");
-let menuScrollTimer=null;
-
-const closeMenu = () => {
-  const menu = document.getElementById("nav-list");
-
-  nav.classList.remove("open");
-  menu.classList.remove("open");
-  menu.style.removeProperty("max-height");
-
-  toggle.setAttribute("aria-expanded", "false");
-  toggle.setAttribute("aria-label", "Menü öffnen");
-};
+let menuScrollTimer = null;
 
 const closeMenu = () => {
   const menu = document.getElementById("nav-list");
