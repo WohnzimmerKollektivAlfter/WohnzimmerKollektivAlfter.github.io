@@ -210,24 +210,30 @@ a:hover{color:var(--color-link-hover);}
     display: none;
   }
 
-  nav ul.open {
-    display: flex;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    flex-direction: column;
-    justify-content: flex-start;
-    flex-wrap: nowrap;
-    background: var(--color-background);
-    box-shadow: 0 4px 12px rgba(17, 24, 31, .12);
-    z-index: 1;
-    max-height: calc(100vh - 56px);
-    max-height: calc(100dvh - 56px);
-    overflow-y: auto;
-    overscroll-behavior-y: contain;
-    padding: 0;
-  }
+nav ul.open {
+  display: flex;
+  position: absolute;
+  top: 100%;
+  bottom: auto;
+  left: 0;
+  right: 0;
+  flex-direction: column;
+  justify-content: flex-start;
+  flex-wrap: nowrap;
+  background: var(--color-background);
+  box-shadow: 0 4px 12px rgba(17, 24, 31, .12);
+  z-index: 1;
+  max-height: calc(100vh - 56px);
+  max-height: calc(100dvh - 56px);
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+  padding: 0;
+}
+
+nav ul.open.open-up {
+  top: auto;
+  bottom: 100%;
+}
 
   nav ul.open a {
     padding: 10px 20px;
@@ -570,6 +576,17 @@ const closeMenu = () => {
   toggle.setAttribute("aria-label", "Menü öffnen");
 };
 
+const closeMenu = () => {
+  const menu = document.getElementById("nav-list");
+
+  nav.classList.remove("open");
+  menu.classList.remove("open", "open-up");
+  menu.style.removeProperty("max-height");
+
+  toggle.setAttribute("aria-expanded", "false");
+  toggle.setAttribute("aria-label", "Menü öffnen");
+};
+
 const openMenu = () => {
   const menu = document.getElementById("nav-list");
 
@@ -578,11 +595,17 @@ const openMenu = () => {
 
   const viewportHeight =
     window.visualViewport?.height ?? window.innerHeight;
+  const navRect = nav.getBoundingClientRect();
+  const spaceAbove = navRect.top;
+  const spaceBelow = viewportHeight - navRect.bottom;
+  const openUp = spaceAbove > spaceBelow;
+
+  menu.classList.toggle("open-up", openUp);
+
   const availableHeight = Math.max(
     0,
-    viewportHeight - nav.getBoundingClientRect().bottom
+    openUp ? spaceAbove : spaceBelow
   );
-
   menu.style.maxHeight = `${availableHeight}px`;
 
   toggle.setAttribute("aria-expanded", "true");
