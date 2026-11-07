@@ -391,6 +391,7 @@ header.hero .hero-copy {
   </p>
   <p>
     Dein Mitgliedsbeitrag beträgt mindestens 4&nbsp;€ im Monat.
+  </p>
   <p>
     Gemeinschaftlich können wir so sowohl Raummiete, Feuerholz, Konto-, Notar- und Versicherungsbeiträge, als auch unseren Hostingdienst oder kleinere Anschaffungen und Reparaturen tragen.
   </p>
@@ -407,10 +408,10 @@ header.hero .hero-copy {
 
     <p><strong>Sonntag, den 22.11.2026, von 15:00 bis 19:00 Uhr.</strong></p>
 
-    <ul>
+    <ol>
       <li>15:00 Uhr bis 17:00 Uhr: Reflexion der Zukunftskonferenz und der Organisationstestphase</li>
       <li>17:00 Uhr bis spätestens 19:00 Uhr: formale Vereinsangelegenheiten und Vorstandsneuwahlen</li>
-    </ul>
+    </ol>
 
     <p>Liebe Mitglieder des Wohnzimmers!</p>
 
@@ -551,7 +552,7 @@ header.hero .hero-copy {
 <h2>Du möchtest vorbeikommen oder uns schreiben?</h2>
 <p>Wir würden uns sehr freuen, dich persönlich im Wohnzimmer willkommen zu heißen!</p>
 <p>Wenn du eine Veranstaltung im Wohnzimmer organisieren möchtest, dann schreib uns gerne eine E‑Mail.</p>
-<p>Schreib uns auch, wenn du das Wohnzimmer in einer der Arbeitsgemeinschaften mitgestalten oder durch deine Mitgliedschaft unterstützen möchtest.</p></p>
+<p>Schreib uns auch, wenn du das Wohnzimmer in einer der Arbeitsgemeinschaften mitgestalten oder durch deine Mitgliedschaft unterstützen möchtest.</p>
 <p>Weitere Neuigkeiten findest du auf Instagram &amp; Telegram.</p>
 
 <div class="contact-grid">
@@ -685,16 +686,28 @@ toggle.addEventListener("click", () => {
   isOpen ? closeMenu() : openMenu();
 });
 
-links.forEach(link=>{
-  link.addEventListener("click",e=>{
+links.forEach(link => {
+  link.addEventListener("click", e => {
     e.preventDefault();
     closeMenu();
-    if(menuScrollTimer!==null) return;
-    menuScrollTimer=setTimeout(()=>menuScrollTimer=null,666);
+
+    if (menuScrollTimer !== null) return;
+    menuScrollTimer = setTimeout(() => {
+      menuScrollTimer = null;
+    }, 666);
+
     document.querySelector(".nav.active")?.classList.remove("active");
     link.classList.add("active");
-    history.pushState(null,"",link.getAttribute("href"));
-    document.querySelector(link.getAttribute("href")).scrollIntoView();
+
+    history.pushState(null, "", link.getAttribute("href"));
+
+    const navTarget = document.querySelector(link.getAttribute("href"));
+    if (!navTarget) return;
+
+    const focusTarget = navTarget.querySelector("h1, h2") || navTarget;
+    focusTarget.setAttribute("tabindex", "-1");
+    navTarget.scrollIntoView();
+    focusTarget.focus({ preventScroll: true });
   });
 });
 
