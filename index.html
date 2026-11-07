@@ -582,6 +582,63 @@ const nav=document.querySelector("nav");
 const toggle=document.querySelector(".nav-toggle");
 let menuScrollTimer = null;
 
+const setActiveLink = (activeLink) => {
+  links.forEach((link) => {
+    const isActive = link === activeLink;
+
+    link.classList.toggle("active", isActive);
+
+    if (isActive) {
+      link.setAttribute("aria-current", "location");
+    } else {
+      link.removeAttribute("aria-current");
+    }
+  });
+};
+
+const setActiveLink = (activeLink) => {
+  links.forEach((link) => {
+    const isActive = link === activeLink;
+    link.classList.toggle("active", isActive);
+
+    if (isActive) {
+      link.setAttribute("aria-current", "location");
+    } else {
+      link.removeAttribute("aria-current");
+    }
+  });
+};
+
+const updateActiveLink = () => {
+  if (!links.length) return;
+
+  const scrollPos = window.scrollY;
+  const scrollHeight = document.documentElement.scrollHeight;
+  const isAtBottom =
+    window.innerHeight + window.scrollY >= scrollHeight - 50;
+
+  let activeLink = links[0];
+
+  for (let i = links.length - 1; i >= 0; i--) {
+    const target = document.querySelector(
+      links[i].getAttribute("href")
+    );
+
+    if (target && scrollPos >= target.offsetTop - 80) {
+      activeLink = links[i];
+      break;
+    }
+  }
+
+  if (isAtBottom) {
+    activeLink = links[links.length - 1];
+  }
+
+  setActiveLink(activeLink);
+};
+
+updateActiveLink();
+
 const closeMenu = () => {
   const menu = document.getElementById("nav-list");
 
@@ -636,8 +693,7 @@ links.forEach(link => {
       menuScrollTimer = null;
     }, 666);
 
-    document.querySelector(".nav.active")?.classList.remove("active");
-    link.classList.add("active");
+    setActiveLink(link);
 
     history.pushState(null, "", link.getAttribute("href"));
 
@@ -658,27 +714,7 @@ window.addEventListener("scroll", () => {
 
   if (menuScrollTimer !== null) return;
 
-  const scrollPos = window.scrollY;
-  const scrollHeight = document.documentElement.scrollHeight;
-  const isAtBottom =
-    window.innerHeight + window.scrollY >= scrollHeight - 50;
-
-  document.querySelector(".nav.active")?.classList.remove("active");
-
-  for (let i = links.length - 1; i >= 0; i--) {
-    const target = document.querySelector(links[i].getAttribute("href"));
-    if (!target) continue;
-
-    if (scrollPos >= target.offsetTop - 80) {
-      links[i].classList.add("active");
-      break;
-    }
-  }
-
-  if (isAtBottom) {
-    document.querySelector(".nav.active")?.classList.remove("active");
-    links[links.length - 1].classList.add("active");
-  }
+  updateActiveLink();
 });
 
 document.addEventListener("click", e => {
