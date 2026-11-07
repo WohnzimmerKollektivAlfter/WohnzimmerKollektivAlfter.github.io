@@ -6,7 +6,6 @@
 <meta name="description" content="Wohnzimmer Alfter – ein selbstorganisierter Kultur- und Begegnungsort für alle.">
 <title>Wohnzimmer Alfter</title>
 <style>
-html{scroll-behavior:smooth;}
 :root {
   color-scheme: light dark;
   --color-text: #474747;
@@ -329,8 +328,23 @@ header.hero .hero-copy {
   background: rgba(17, 24, 31, .86);
 }
 
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-toggle .bar {
+    transition: none;
+  }
+}
 </style>
-<link rel="icon" type="image/jpeg" href="/assets/wohnzimmer-logo.jpg">
+<link
+  rel="icon"
+  type="image/jpeg"
+  href="/assets/wohnzimmer-logo.jpg"
+>
 </head>
 <body>
 
