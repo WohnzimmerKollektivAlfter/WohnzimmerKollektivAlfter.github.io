@@ -83,7 +83,10 @@ nav{position:sticky;top:0;z-index:20;background:var(--color-background);box-shad
 nav ul{list-style:none;margin:0;padding:0;display:flex;justify-content:center;flex-wrap:wrap;}
 nav li{margin:0;}
 nav a{display:block;padding:14px 16px;color:var(--color-link);text-decoration:none;font-size:.9rem;letter-spacing:.5px;border-bottom:2px solid transparent;}
-nav a:hover{color:var(--color-link);border-bottom-color:var(--color-accent);}
+nav a:hover {
+  color: var(--color-link-hover);
+  border-bottom-color: var(--color-link-hover);
+}
 nav a.active {
   border-bottom-color: var(--color-link-hover);
   font-weight: 600;
