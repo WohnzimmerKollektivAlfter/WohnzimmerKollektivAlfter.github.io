@@ -128,13 +128,13 @@ nav a.active {
   transform: translateY(-50%);
   display: grid;
   place-items: center;
-  width: 42px;
-  height: 42px;
+  width: 48px;
+  height: 48px;
   padding: 0;
   border: 0;
   border-radius: 50%;
   background: var(--color-accent);
-  color: var(--color-heading);
+  color: var(--color-cta-text);
   cursor: pointer;
 }
 
@@ -258,9 +258,10 @@ a:hover{color:var(--color-link-hover);}
   }
 
   .nav-toggle {
-    display: block;
-    margin-left: auto;
-  }
+  display: block;
+  width: fit-content;
+  margin: 0 6px 0 auto;
+}
 
   .theme-toggle {
     right: 64px;
