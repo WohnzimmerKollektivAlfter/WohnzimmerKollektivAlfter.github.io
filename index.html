@@ -84,7 +84,10 @@ nav ul{list-style:none;margin:0;padding:0;display:flex;justify-content:center;fl
 nav li{margin:0;}
 nav a{display:block;padding:14px 16px;color:var(--color-link);text-decoration:none;font-size:.9rem;letter-spacing:.5px;border-bottom:2px solid transparent;}
 nav a:hover{color:var(--color-link);border-bottom-color:var(--color-accent);}
-nav a.active{border-bottom-color:var(--color-accent);font-weight:600;}
+nav a.active {
+  border-bottom-color: var(--color-link-hover);
+  font-weight: 600;
+}
 .theme-toggle {
   position: absolute;
   top: 50%;
@@ -267,7 +270,7 @@ nav ul.open.open-up {
   }
 
   nav ul.open a.active {
-    border-left-color: var(--color-accent);
+    border-left-color: var(--color-link-hover);
     background: var(--color-surface-soft);
     font-weight: 600;
   }
@@ -419,7 +422,7 @@ header.hero .hero-copy {
       Es ist wieder an der Zeit für eine Mitgliederversammlung des
       Wohnzimmer.Kollektiv e. V. Ein Jahr ist es schon wieder her, deshalb
       wird es Zeit, euch herzlich ins Wohnzimmer einzuladen zu
-      Vorstandswahlen und der Beschließung des Jahreshaushalts. Zusätzlich
+      Vorstandswahlen und der Beschließung des Jahresabschlusses. Zusätzlich
       werden wir inhaltlich an die erfolgreiche Zukunftskonferenz im
       September andocken.
     </p>
@@ -691,7 +694,10 @@ links.forEach(link => {
     e.preventDefault();
     closeMenu();
 
-    if (menuScrollTimer !== null) return;
+    if (menuScrollTimer !== null) {
+      clearTimeout(menuScrollTimer);
+    }
+
     menuScrollTimer = setTimeout(() => {
       menuScrollTimer = null;
     }, 666);
@@ -741,12 +747,15 @@ window.addEventListener("scroll", () => {
   }
 });
 
-document.addEventListener("click",e=>{
-  if(!e.target.closest("nav")) closeMenu();
+document.addEventListener("click", e => {
+  if (!e.target.closest("nav")) closeMenu();
 });
-document.addEventListener("keydown",e=>{
-  if(e.key==="Escape") closeMenu();
-});
+
+document.addEventListener("keydown", e => {
+  if (e.key === "Escape" && nav.classList.contains("open")) {
+    closeMenu();
+    toggle.focus();
+  }
 });
 </script>
 
