@@ -596,19 +596,6 @@ const setActiveLink = (activeLink) => {
   });
 };
 
-const setActiveLink = (activeLink) => {
-  links.forEach((link) => {
-    const isActive = link === activeLink;
-    link.classList.toggle("active", isActive);
-
-    if (isActive) {
-      link.setAttribute("aria-current", "location");
-    } else {
-      link.removeAttribute("aria-current");
-    }
-  });
-};
-
 const updateActiveLink = () => {
   if (!links.length) return;
 
