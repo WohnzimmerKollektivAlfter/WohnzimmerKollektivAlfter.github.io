@@ -771,36 +771,32 @@ document.addEventListener("keydown", e => {
 </script>
 
 <script>
-  const themeToggle = document.querySelector(".theme-toggle");
-  const root = document.documentElement;
-  const storageKey = "wohnzimmer-theme";
-  const savedTheme = localStorage.getItem(storageKey);
-  const systemDark = window.matchMedia("(prefers-color-scheme: dark)");
+const themeToggle = document.querySelector(".theme-toggle");
+const root = document.documentElement;
+const systemDark = window.matchMedia("(prefers-color-scheme: dark)");
 
-  if (savedTheme === "light" || savedTheme === "dark") {
-    root.dataset.theme = savedTheme;
-  }
+function currentTheme() {
+  return root.dataset.theme || (systemDark.matches ? "dark" : "light");
+}
 
-  function currentTheme() {
-    return root.dataset.theme || (systemDark.matches ? "dark" : "light");
-  }
+function updateThemeLabel() {
+  const label = currentTheme() === "dark"
+    ? "Hellen Modus aktivieren"
+    : "Dunklen Modus aktivieren";
+  themeToggle.setAttribute("aria-label", label);
+  themeToggle.title = label;
+}
 
-  function updateThemeLabel() {
-    const label = currentTheme() === "dark"
-      ? "Hellen Modus aktivieren"
-      : "Dunklen Modus aktivieren";
+updateThemeLabel();
 
-    themeToggle.setAttribute("aria-label", label);
-    themeToggle.title = label;
-  }
-
+themeToggle.addEventListener("click", () => {
+  root.dataset.theme = currentTheme() === "dark" ? "light" : "dark";
   updateThemeLabel();
+});
 
-  themeToggle.addEventListener("click", () => {
-    root.dataset.theme = currentTheme() === "dark" ? "light" : "dark";
-    localStorage.setItem(storageKey, root.dataset.theme);
-    updateThemeLabel();
-  });
+systemDark.addEventListener("change", () => {
+  if (!root.dataset.theme) updateThemeLabel();
+});
 </script>
   
 </body>
