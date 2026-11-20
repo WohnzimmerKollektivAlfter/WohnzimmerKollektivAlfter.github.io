@@ -10,52 +10,24 @@
 
 :root {
   color-scheme: light dark;
-  --color-text: #474747;
-  --color-heading: #11181F;
-  --color-link: #11181F;
-  --color-cta-text: #11181F;
-  --color-text-strong: #333;
-  --color-text-muted: #595959;
-  --color-background: #ffffff;
-  --color-surface-soft: #fff3ea;
-  --color-border: #e8e8e8;
-  --color-border-mobile: #f0f0f0;
-  --color-accent: #ffa96b;
-  --color-accent-hover: #ff9b4d;
-  --color-link-hover: #8f4c16;
+
+  --color-text:          light-dark(#474747, #f2f2f2);
+  --color-heading:       light-dark(#11181F, #ffffff);
+  --color-link:          light-dark(#11181F, #ffd19e);
+  --color-cta-text:      #11181F;
+  --color-text-strong:   light-dark(#333333, #ffffff);
+  --color-text-muted:    light-dark(#595959, #d0d0d0);
+  --color-background:    light-dark(#ffffff, #101010);
+  --color-surface-soft:  light-dark(#fff3ea, #191919);
+  --color-border:        light-dark(#e8e8e8, #767676);
+  --color-border-mobile: light-dark(#f0f0f0, #767676);
+  --color-accent:        light-dark(#ffa96b, #ffb477);
+  --color-accent-hover:  light-dark(#ff9b4d, #ffc890);
+  --color-link-hover:    light-dark(#8f4c16, #ffe0bd);
 }
 
-:root[data-theme="dark"] {
-  --color-text: #f2f2f2;
-  --color-heading: #ffffff;
-  --color-link: #ffd19e;
-  --color-text-strong: #ffffff;
-  --color-text-muted: #d0d0d0;
-  --color-background: #101010;
-  --color-surface-soft: #191919;
-  --color-border: #767676;
-  --color-border-mobile: #767676;
-  --color-accent: #ffb477;
-  --color-accent-hover: #ffc890;
-  --color-link-hover: #ffe0bd;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --color-text: #f2f2f2;
-    --color-heading: #ffffff;
-    --color-link: #ffd19e;
-    --color-text-strong: #ffffff;
-    --color-text-muted: #d0d0d0;
-    --color-background: #101010;
-    --color-surface-soft: #191919;
-    --color-border: #767676;
-    --color-border-mobile: #767676;
-    --color-accent: #ffb477;
-    --color-accent-hover: #ffc890;
-    --color-link-hover: #ffe0bd;
-  }
-}
+:root[data-theme="light"] { color-scheme: light; }
+:root[data-theme="dark"]  { color-scheme: dark; }
 
 body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.7;margin:0;color:var(--color-text);background:var(--color-background);text-align:left;}
 h1,h2,h3,h4{font-family:Georgia,"Times New Roman",serif;color:var(--color-heading);line-height:1.2;font-weight:600;}
