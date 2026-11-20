@@ -13,7 +13,7 @@
 
   --color-text:          light-dark(#474747, #f2f2f2);
   --color-heading:       light-dark(#11181F, #ffffff);
-  --color-link:          light-dark(#11181F, #ffd19e);
+  --color-link:          light-dark(#8f4c16, #ffd19e);
   --color-cta-text:      #11181F;
   --color-text-strong:   light-dark(#333333, #ffffff);
   --color-text-muted:    light-dark(#595959, #d0d0d0);
@@ -312,8 +312,18 @@ ol.steps li {
 }
 
 .contact-block a{color:var(--color-link);}
-a{color:var(--color-link);}
-a:hover{color:var(--color-link-hover);}
+
+a {
+  color: var(--color-link);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  text-decoration-thickness: 1.5px;
+}
+
+a:hover {
+  color: var(--color-link-hover);
+  text-decoration-thickness: 2px;
+}
 
 .cta {
   display: inline-block;
