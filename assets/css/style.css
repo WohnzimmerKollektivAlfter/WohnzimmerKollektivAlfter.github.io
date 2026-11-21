@@ -467,3 +467,12 @@ header.hero .hero-copy {
     transition: none;
   }
 }
+
+/* Floating theme toggle (Umgang-mit-Daten-Seite, ohne Navigation) */
+.theme-toggle--floating {
+  position: fixed;
+  inset-block-start: 12px;
+  inset-inline-end: 12px;
+  transform: none;
+  z-index: 30;
+}
