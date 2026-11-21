@@ -352,9 +352,7 @@ a:hover {
 }
 
 .footer-credit a {
-  display: inline-block;
   padding-block: 12px;
-  padding-inline: 14px;
   margin-block-start: 4px;
 }
 
