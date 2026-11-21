@@ -20,6 +20,21 @@
 
 <a class="skip-link" href="#inhalt">Zum Inhalt springen</a>
 
+<button
+  class="theme-toggle theme-toggle--floating"
+  type="button"
+  aria-label="Dunklen Modus aktivieren"
+  title="Dunklen Modus aktivieren"
+>
+  <svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true">
+    <circle cx="12" cy="12" r="4"></circle>
+    <path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"></path>
+  </svg>
+  <svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5 8.5 8.5 0 1 0 20.5 14.2Z"></path>
+  </svg>
+</button>
+
 <main id="inhalt" tabindex="-1">
 
 <section>
@@ -132,6 +147,31 @@
     <a href="/">Zur Startseite</a>
   </p>
 </footer>
+
+<script>
+const themeToggle = document.querySelector(".theme-toggle");
+const root = document.documentElement;
+const systemDark = window.matchMedia("(prefers-color-scheme: dark)");
+
+function currentTheme() {
+  return root.dataset.theme || (systemDark.matches ? "dark" : "light");
+}
+
+function updateThemeLabel() {
+  const label = currentTheme() === "dark"
+    ? "Hellen Modus aktivieren"
+    : "Dunklen Modus aktivieren";
+  themeToggle.setAttribute("aria-label", label);
+  themeToggle.title = label;
+}
+
+updateThemeLabel();
+
+themeToggle.addEventListener("click", () => {
+  root.dataset.theme = currentTheme() === "dark" ? "light" : "dark";
+  updateThemeLabel();
+});
+</script>
 
 </body>
 </html>
