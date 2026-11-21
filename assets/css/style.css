@@ -474,3 +474,37 @@ header.hero .hero-copy {
   transform: none;
   z-index: 30;
 }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-block: 24px;
+  font-size: 0.95rem;
+}
+
+caption {
+  text-align: start;
+  font-weight: 600;
+  color: var(--color-heading);
+  margin-block-end: 10px;
+}
+
+th, td {
+  border: 1px solid var(--color-border);
+  padding: 10px 12px;
+  text-align: start;
+  vertical-align: top;
+}
+
+th {
+  background: var(--color-surface-soft);
+  color: var(--color-heading);
+}
+
+.table-wrap {
+  overflow-x: auto;
+}
+
+.table-wrap table {
+  min-width: 560px;
+}
