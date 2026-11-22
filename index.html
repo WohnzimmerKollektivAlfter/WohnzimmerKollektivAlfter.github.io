@@ -5,6 +5,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="color-scheme" content="light dark">
 <script>document.documentElement.classList.add("js");</script>
+<script>
+(function () {
+  try {
+    var theme = sessionStorage.getItem("theme");
+    if (theme === "light" || theme === "dark") {
+      document.documentElement.setAttribute("data-theme", theme);
+    }
+  } catch (e) {
+    /* Ohne Speicherzugriff gilt das Systemtheme, wie bisher. */
+  }
+})();
+</script>
 <meta name="referrer" content="no-referrer">
 <meta name="description" content="Wohnzimmer Alfter – ein selbstorganisierter Kultur- und Begegnungsort für alle.">
 <title>Wohnzimmer Alfter</title>
