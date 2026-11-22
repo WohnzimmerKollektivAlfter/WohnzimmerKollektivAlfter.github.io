@@ -492,11 +492,11 @@ themeToggle.addEventListener("click", () => {
 try {
   sessionStorage.setItem("theme", next);
 } catch (e) {
-  /* Der Speicherzugriff kann verweigert werden, zum Beispiel im
-     privaten Modus des Browsers. In diesem Fall funktioniert das
-     Umschalten trotzdem; die Wahl bleibt jedoch nur bis zum
-     nächsten Neuladen der Seite erhalten. Das ist gewollt, daher
-     ist hier keine weitere Fehlerbehandlung nötig. */
+  /* Wenn der Speicherzugriff verweigert wird (z. B. wenn in den
+     Browser-Einstellungen das Speichern von Daten deaktiviert ist),
+     funktioniert das Umschalten trotzdem; die Wahl bleibt dann nur
+     bis zum nächsten Neuladen erhalten. Das ist gewollt, daher ist
+     hier keine weitere Fehlerbehandlung nötig. */
 }
   updateThemeLabel();
 });
