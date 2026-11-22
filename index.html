@@ -413,6 +413,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const openMenu = () => {
     if (usesPopover) {
+      // Das Popover liegt im Top Layer und kennt die Position der
+      // Navigationsleiste nicht. Vor dem Öffnen wird deshalb
+      // gemessen, wo die Leiste sich gerade befindet, und das
+      // Menü direkt darunter platziert. Ganz oben auf der Seite
+      // klebt die Leiste noch nicht am Bildschirmrand, sondern
+      // steht weiter unten – das Menü öffnet sich dann eben
+      // dort, direkt unter der sichtbaren Leiste. Ohne JS gilt
+      // die feste CSS-Position (top: 64px).
+      const navBottom = nav.getBoundingClientRect().bottom;
+      const topPx = Math.max(0, navBottom);
+
+      menu.style.top = `${topPx}px`;
+      menu.style.maxHeight = `${Math.max(0, window.innerHeight - topPx)}px`;
+
       // Öffnen und Schließen (Light dismiss, Escape) macht der Browser.
       menu.showPopover();
       setToggleState(true);
