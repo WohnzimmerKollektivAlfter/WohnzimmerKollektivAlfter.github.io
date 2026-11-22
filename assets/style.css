@@ -369,6 +369,10 @@ a:hover {
   transition: transform .2s ease, opacity .2s ease;
 }
 
+html:not(.js) .nav-toggle {
+  display: none;
+}
+
 @media (max-width: 640px) {
   nav {
     padding-block: 8px;
@@ -391,6 +395,10 @@ a:hover {
  
   nav ul {
     display: none;
+  }
+
+  html:not(.js) nav ul {
+    display: flex;
   }
 
 nav ul.open {
