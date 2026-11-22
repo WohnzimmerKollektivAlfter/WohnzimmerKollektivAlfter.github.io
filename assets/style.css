@@ -398,12 +398,28 @@ a:hover {
     grid-template-columns: 1fr;
   }
 
+  /* Der Burger-Button hat eine feste Größe von 48×48 Pixel.
+     Zusammen mit dem Abstand über und unter ihm ist die
+     Navigationsleiste dadurch immer genau 64 Pixel hoch.
+     Das Menü weiter unten wird genau an diesen Wert
+     angepasst (top: 64px), damit es direkt unter der
+     Leiste erscheint. */
   .nav-toggle {
-  display: block;
-  width: fit-content;
-  margin-block: 0;
-  margin-inline: auto 6px;
-}
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 48px;
+    height: 48px;
+    padding: 0;
+    margin-block: 0;
+    margin-inline: auto 6px;
+  }
+
+  .nav-toggle .bar {
+    margin-block: 0;
+  }
 
   .theme-toggle {
     right: 64px;
@@ -420,19 +436,18 @@ a:hover {
     justify-content: flex-start;
     row-gap: 8px;
     box-sizing: border-box;
-    position: absolute;
+    position: fixed;
     inset: auto;
-    top: 100%;
+    top: 64px;
     left: 0;
-    right: 0;
     margin: 0;
     border: 0;
     padding-block: 6px;
     padding-inline: 8px;
     background: var(--color-background);
     box-shadow: 0 4px 12px rgba(17, 24, 31, .12);
-    max-height: calc(100vh - 56px);
-    max-height: calc(100dvh - 56px);
+    max-height: calc(100vh - 64px);
+    max-height: calc(100dvh - 64px);
     overflow-y: auto;
     overscroll-behavior-y: contain;
   }
