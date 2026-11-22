@@ -92,6 +92,20 @@ nav ul {
   column-gap: 6px;
 }
 
+@media (min-width: 641px) {
+  nav ul[popover] {
+    position: static;
+    inset: auto;
+    width: auto;
+    margin: 0;
+    border: 0;
+    padding: 0;
+    overflow: visible;
+    background: transparent;
+    color: inherit;
+  }
+}
+
 nav li {
   margin: 0;
 }
@@ -369,8 +383,10 @@ a:hover {
   transition: transform .2s ease, opacity .2s ease;
 }
 
-html:not(.js) .nav-toggle {
-  display: none;
+@supports not selector(:popover-open) {
+  html:not(.js) .nav-toggle {
+    display: none;
+  }
 }
 
 @media (max-width: 640px) {
@@ -393,13 +409,64 @@ html:not(.js) .nav-toggle {
     right: 64px;
 }
  
-  nav ul {
+  nav ul:not(:popover-open) {
     display: none;
   }
 
-  html:not(.js) nav ul {
+  nav ul:popover-open {
     display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    row-gap: 8px;
+    box-sizing: border-box;
+    position: absolute;
+    inset: auto;
+    top: 100%;
+    left: 0;
+    right: 0;
+    margin: 0;
+    border: 0;
+    padding-block: 6px;
+    padding-inline: 8px;
+    background: var(--color-background);
+    box-shadow: 0 4px 12px rgba(17, 24, 31, .12);
+    max-height: calc(100vh - 56px);
+    max-height: calc(100dvh - 56px);
+    overflow-y: auto;
+    overscroll-behavior-y: contain;
   }
+
+  nav ul:popover-open a {
+    padding-block: 10px;
+    padding-inline: 20px;
+    text-align: center;
+    border-block-end: 1px solid var(--color-border-mobile);
+    border-inline-start: 4px solid transparent;
+  }
+
+  nav ul:popover-open a.active {
+    border-inline-start-color: var(--color-link-hover);
+    background: var(--color-surface-soft);
+    font-weight: 600;
+  }
+
+  nav ul:popover-open a:last-child {
+    border-block-end: none;
+  }
+
+  @supports not selector(:popover-open) {
+    html:not(.js) nav ul {
+      display: flex;
+    }
+
+    html.js nav ul {
+      display: none;
+    }
+  }
+
+  /* Fallback für Browser ohne Popover-API: das JS steuert die
+     Sichtbarkeit über die Klasse .open (siehe Script unten). */
 
 nav ul.open {
   display: flex;
