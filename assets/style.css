@@ -117,8 +117,7 @@ nav a.active {
   font-weight: 600;
 }
 
-.theme-toggle { display: none; }
-:root.js .theme-toggle { display: grid; }
+html:not(.js) .theme-toggle { display: none; }
 
 .theme-toggle {
   position: absolute;
