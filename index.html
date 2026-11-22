@@ -46,12 +46,21 @@
 </div>
 </header>
 
-<nav aria-label="Navigation">
-<button class="nav-toggle" aria-label="Menü öffnen" aria-expanded="false" aria-controls="nav-list">
-<span class="bar"></span><span class="bar"></span><span class="bar"></span>
+<button
+  class="nav-toggle"
+  type="button"
+  popovertarget="nav-list"
+  popovertargetaction="toggle"
+  aria-expanded="false"
+  aria-controls="nav-list"
+  aria-label="Menü öffnen"
+>
+<span class="bar"></span>
+<span class="bar"></span>
+<span class="bar"></span>
 </button>
 
-<ul id="nav-list" tabindex="-1">
+<ul id="nav-list" popover>
   <li><a class="nav" href="#start">Start</a></li>
   <li><a class="nav" href="#wohnzimmer">Was ist das Wohnzimmer?</a></li>
   <li><a class="nav" href="#veranstaltung-organisieren">Veranstaltung organisieren</a></li>
@@ -326,144 +335,198 @@
 </footer>
 
 <script>
-document.addEventListener("DOMContentLoaded",()=>{
-const links=document.querySelectorAll(".nav");
-const nav=document.querySelector("nav");
-const toggle=document.querySelector(".nav-toggle");
-let menuScrollTimer = null;
-
-const setActiveLink = (activeLink) => {
-  links.forEach((link) => {
-    const isActive = link === activeLink;
-
-    link.classList.toggle("active", isActive);
-
-    if (isActive) {
-      link.setAttribute("aria-current", "location");
-    } else {
-      link.removeAttribute("aria-current");
-    }
-  });
-};
-
-const updateActiveLink = () => {
-  if (!links.length) return;
-
-  const scrollPos = window.scrollY;
-  const scrollHeight = document.documentElement.scrollHeight;
-  const isAtBottom =
-    window.innerHeight + window.scrollY >= scrollHeight - 50;
-
-  let activeLink = links[0];
-
-  for (let i = links.length - 1; i >= 0; i--) {
-    const target = document.querySelector(
-      links[i].getAttribute("href")
-    );
-
-    if (target && scrollPos >= target.offsetTop - 80) {
-      activeLink = links[i];
-      break;
-    }
-  }
-
-  if (isAtBottom) {
-    activeLink = links[links.length - 1];
-  }
-
-  setActiveLink(activeLink);
-};
-
-updateActiveLink();
-
-const closeMenu = () => {
+document.addEventListener("DOMContentLoaded", () => {
+  const links = document.querySelectorAll(".nav");
+  const nav = document.querySelector("nav");
   const menu = document.getElementById("nav-list");
+  const toggle = document.querySelector(".nav-toggle");
 
-  nav.classList.remove("open");
-  menu.classList.remove("open", "open-up");
-  menu.style.removeProperty("max-height");
+  // Gleiche Erkennung wie im CSS (@supports selector(:popover-open)):
+  // Nur dann übernimmt die Popover-API das Öffnen und Schließen.
+  const usesPopover =
+    typeof CSS !== "undefined" &&
+    CSS.supports("selector(:popover-open)");
 
-  toggle.setAttribute("aria-expanded", "false");
-  toggle.setAttribute("aria-label", "Menü öffnen");
-};
+  let menuScrollTimer = null;
 
-const openMenu = () => {
-  const menu = document.getElementById("nav-list");
+  const setActiveLink = (activeLink) => {
+    links.forEach((link) => {
+      const isActive = link === activeLink;
 
-  nav.classList.add("open");
-  menu.classList.add("open");
+      link.classList.toggle("active", isActive);
 
-  const viewportHeight =
-    window.visualViewport?.height ?? window.innerHeight;
-  const navRect = nav.getBoundingClientRect();
-  const spaceAbove = navRect.top;
-  const spaceBelow = viewportHeight - navRect.bottom;
-  const openUp = spaceAbove > spaceBelow;
+      if (isActive) {
+        link.setAttribute("aria-current", "location");
+      } else {
+        link.removeAttribute("aria-current");
+      }
+    });
+  };
 
-  menu.classList.toggle("open-up", openUp);
+  const updateActiveLink = () => {
+    if (!links.length) return;
 
-  const availableHeight = Math.max(
-    0,
-    openUp ? spaceAbove : spaceBelow
-  );
-  menu.style.maxHeight = `${availableHeight}px`;
+    const scrollPos = window.scrollY;
+    const scrollHeight = document.documentElement.scrollHeight;
+    const isAtBottom =
+      window.innerHeight + window.scrollY >= scrollHeight - 50;
 
-  toggle.setAttribute("aria-expanded", "true");
-  toggle.setAttribute("aria-label", "Menü schließen");
-};
+    let activeLink = links[0];
 
-toggle.addEventListener("click", () => {
-  const isOpen = document.getElementById("nav-list").classList.contains("open");
-  isOpen ? closeMenu() : openMenu();
-});
+    for (let i = links.length - 1; i >= 0; i--) {
+      const target = document.querySelector(
+        links[i].getAttribute("href")
+      );
 
-links.forEach(link => {
-  link.addEventListener("click", e => {
-    e.preventDefault();
-    closeMenu();
-
-    if (menuScrollTimer !== null) {
-      clearTimeout(menuScrollTimer);
+      if (target && scrollPos >= target.offsetTop - 80) {
+        activeLink = links[i];
+        break;
+      }
     }
 
-    menuScrollTimer = setTimeout(() => {
-      menuScrollTimer = null;
-    }, 666);
+    if (isAtBottom) {
+      activeLink = links[links.length - 1];
+    }
 
-    setActiveLink(link);
-
-    history.pushState(null, "", link.getAttribute("href"));
-
-    const navTarget = document.querySelector(link.getAttribute("href"));
-    if (!navTarget) return;
-
-    const focusTarget = navTarget.querySelector("h1, h2") || navTarget;
-    focusTarget.setAttribute("tabindex", "-1");
-    navTarget.scrollIntoView();
-    focusTarget.focus({ preventScroll: true });
-  });
-});
-
-window.addEventListener("scroll", () => {
-  if (nav.classList.contains("open")) {
-    closeMenu();
-  }
-
-  if (menuScrollTimer !== null) return;
+    setActiveLink(activeLink);
+  };
 
   updateActiveLink();
-});
 
-document.addEventListener("click", e => {
-  if (!e.target.closest("nav")) closeMenu();
-});
+  // ---------- Menü-Steuerung ----------
 
-document.addEventListener("keydown", e => {
-  if (e.key === "Escape" && nav.classList.contains("open")) {
-    closeMenu();
-    toggle.focus();
+  const setToggleState = (isOpen) => {
+    const label = isOpen ? "Menü schließen" : "Menü öffnen";
+
+    toggle.setAttribute("aria-expanded", String(isOpen));
+    toggle.setAttribute("aria-label", label);
+  };
+
+  const isMenuOpen = () => {
+    if (usesPopover) {
+      return menu.matches(":popover-open");
+    }
+
+    return menu.classList.contains("open");
+  };
+
+  const openMenu = () => {
+    if (usesPopover) {
+      // Öffnen und Schließen (Light dismiss, Escape) macht der Browser.
+      menu.showPopover();
+      setToggleState(true);
+      return;
+    }
+
+    nav.classList.add("open");
+    menu.classList.add("open");
+
+    const viewportHeight =
+      window.visualViewport?.height ?? window.innerHeight;
+    const navRect = nav.getBoundingClientRect();
+    const spaceAbove = navRect.top;
+    const spaceBelow = viewportHeight - navRect.bottom;
+    const openUp = spaceAbove > spaceBelow;
+
+    menu.classList.toggle("open-up", openUp);
+
+    const availableHeight = Math.max(
+      0,
+      openUp ? spaceAbove : spaceBelow
+    );
+    menu.style.maxHeight = `${availableHeight}px`;
+
+    setToggleState(true);
+  };
+
+  const closeMenu = () => {
+    if (usesPopover) {
+      menu.hidePopover();
+      setToggleState(false);
+      return;
+    }
+
+    nav.classList.remove("open");
+    menu.classList.remove("open", "open-up");
+    menu.style.removeProperty("max-height");
+
+    setToggleState(false);
+  };
+
+  if (usesPopover) {
+    // Der Browser löst bei jeder Zustandsänderung des Popovers ein
+    // "toggle"-Event aus – auch nativ durch Light dismiss oder
+    // Escape. Hier wird nur der Button-Zustand und die
+    // Burger-Animation synchronisiert.
+    menu.addEventListener("toggle", (event) => {
+      const isOpen = event.newState === "open";
+
+      setToggleState(isOpen);
+      nav.classList.toggle("open", isOpen);
+    });
+  } else {
+    toggle.addEventListener("click", () => {
+      if (isMenuOpen()) {
+        closeMenu();
+      } else {
+        openMenu();
+      }
+    });
+
+    // Schließen per Escape (der Browser macht das bei Popovers von
+    // selbst, hier nur für den Fallback).
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && isMenuOpen()) {
+        closeMenu();
+        toggle.focus();
+      }
+    });
+
+    // Schließen bei Klick außerhalb der Navigation (bei Popovers
+    // erledigt das der native Light dismiss).
+    document.addEventListener("click", (e) => {
+      if (!e.target.closest("nav")) closeMenu();
+    });
   }
-});
+
+  // ---------- Scrollspy & Menü bei Scroll schließen ----------
+
+  links.forEach((link) => {
+    link.addEventListener("click", (e) => {
+      e.preventDefault();
+      closeMenu();
+
+      if (menuScrollTimer !== null) {
+        clearTimeout(menuScrollTimer);
+      }
+
+      menuScrollTimer = setTimeout(() => {
+        menuScrollTimer = null;
+      }, 666);
+
+      setActiveLink(link);
+
+      history.pushState(null, "", link.getAttribute("href"));
+
+      const navTarget = document.querySelector(link.getAttribute("href"));
+      if (!navTarget) return;
+
+      const focusTarget = navTarget.querySelector("h1, h2") || navTarget;
+      focusTarget.setAttribute("tabindex", "-1");
+      navTarget.scrollIntoView();
+      focusTarget.focus({ preventScroll: true });
+    });
+  });
+
+  window.addEventListener("scroll", () => {
+    if (isMenuOpen()) {
+      closeMenu();
+    }
+
+    if (menuScrollTimer !== null) return;
+
+    updateActiveLink();
+  });
 });
 </script>
 
