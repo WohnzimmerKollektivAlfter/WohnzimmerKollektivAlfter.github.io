@@ -475,7 +475,17 @@ function updateThemeLabel() {
 updateThemeLabel();
 
 themeToggle.addEventListener("click", () => {
-  root.dataset.theme = currentTheme() === "dark" ? "light" : "dark";
+  const next = currentTheme() === "dark" ? "light" : "dark";
+  root.dataset.theme = next;
+try {
+  sessionStorage.setItem("theme", next);
+} catch (e) {
+  /* Der Speicherzugriff kann verweigert werden, zum Beispiel im
+     privaten Modus des Browsers. In diesem Fall funktioniert das
+     Umschalten trotzdem; die Wahl bleibt jedoch nur bis zum
+     nächsten Neuladen der Seite erhalten. Das ist gewollt, daher
+     ist hier keine weitere Fehlerbehandlung nötig. */
+}
   updateThemeLabel();
 });
 
