@@ -606,3 +606,8 @@ th {
 .table-wrap table {
   min-width: 560px;
 }
+
+.last-updated {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+}
