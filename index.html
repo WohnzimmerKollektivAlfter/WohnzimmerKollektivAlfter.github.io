@@ -469,10 +469,25 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   if (usesPopover) {
-    // Der Browser löst bei jeder Zustandsänderung des Popovers ein
-    // "toggle"-Event aus – auch nativ durch Light dismiss oder
-    // Escape. Hier wird nur der Button-Zustand und die
-    // Burger-Animation synchronisiert.
+    // Der Browser öffnet das Menü von selbst (über popovertarget) –
+    // unser Code wird dabei nicht aufgerufen. Deshalb messen wir hier
+    // beim Klick, wo die Menüleiste gerade auf dem Bildschirm liegt,
+    // und schieben das Menü direkt darunter. So erscheint es an der
+    // richtigen Stelle, auch wenn die Seite gerade oben steht.
+    toggle.addEventListener("click", () => {
+      const navBottom = nav.getBoundingClientRect().bottom;
+      const topPx = Math.max(0, navBottom);
+
+      menu.style.top = `${topPx}px`;
+      menu.style.maxHeight = `${Math.max(0, window.innerHeight - topPx)}px`;
+    });
+
+    // Der Browser meldet jedes Öffnen und Schließen des Menüs hier –
+    // auch wenn es durch Klick außerhalb oder die Escape-Taste
+    // geschlossen wurde. Wir nutzen das, um den Burger-Button auf den
+    // neuen Zustand zu setzen: den Hinweistext („Menü öffnen" /
+    // „Menü schließen") für Screenreader und die Animation, bei der
+    // die drei Striche zu einem Kreuz werden.
     menu.addEventListener("toggle", (event) => {
       const isOpen = event.newState === "open";
 
@@ -480,13 +495,6 @@ document.addEventListener("DOMContentLoaded", () => {
       nav.classList.toggle("open", isOpen);
     });
   } else {
-    toggle.addEventListener("click", () => {
-      if (isMenuOpen()) {
-        closeMenu();
-      } else {
-        openMenu();
-      }
-    });
 
     // Schließen per Escape (der Browser macht das bei Popovers von
     // selbst, hier nur für den Fallback).
