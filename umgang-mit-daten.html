@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+<script>document.documentElement.classList.add("js");</script>
+<script>
+(function () {
+  try {
+    var theme = sessionStorage.getItem("theme");
+    if (theme === "light" || theme === "dark") {
+      document.documentElement.setAttribute("data-theme", theme);
+    }
+  } catch (e) {
+    /* Ohne Speicherzugriff gilt das Systemtheme, wie bisher. */
+  }
+})();
+</script>
+<meta name="referrer" content="no-referrer">
+<meta name="description" content="Umgang mit deinen Daten auf wohnzimmer-alfter.de – kurz und ehrlich erklärt.">
+<title>Umgang mit deinen Daten – Wohnzimmer Alfter</title>
+
+<link rel="stylesheet" href="assets/style.css">
+
+<link
+  rel="icon"
+  type="image/jpeg"
+  href="assets/wohnzimmer-logo.jpg"
+>
+</head>
+
+<body>
+
+<a class="skip-link" href="#inhalt">Zum Inhalt springen</a>
+
+<button
+  class="theme-toggle theme-toggle--floating"
+  type="button"
+  aria-label="Farbschema wechseln"
+  title="Farbschema wechseln"
+>
+  <svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true">
+    <circle cx="12" cy="12" r="4"></circle>
+    <path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"></path>
+  </svg>
+  <svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5 8.5 8.5 0 1 0 20.5 14.2Z"></path>
+  </svg>
+</button>
+
+<main id="inhalt" tabindex="-1">
+
+<section>
+<p class="kicker">Wohnzimmer Alfter</p>
+<h1>Umgang mit deinen Daten</h1>
+
+<p>Diese Seite sammelt nichts über dich. Es gibt hier keine Cookies, kein Tracking und keine Werbung.</p>
+
+<h2>Was wir bewusst nicht tun</h2>
+
+<div class="table-wrap">
+<table>
+  <thead>
+    <tr><th>Tun wir nicht</th><th>Warum</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Cookies setzen, dich wiedererkennen oder profilieren</td>
+      <td>Wir lernen dich als Menschen lieber persönlich kennen – und nicht über das Sammeln deiner Daten</td>
+    </tr>
+    <tr>
+      <td>Zugriffe statistisch auswerten</td>
+      <td>Was uns interessiert, sind die Menschen im Wohnzimmer – nicht Besucherzahlen auf dieser Seite</td>
+    </tr>
+    <tr>
+      <td>Daten weitergeben oder verkaufen</td>
+      <td>Machen wir nicht. Die einzigen Daten, die überhaupt woanders hingehen, sind die, die dein Besuch sowieso bei GitHub hinterlässt (siehe unten)</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<h2>Was deine Geräte und unser Aufbau trotzdem tun</h2>
+
+<div class="table-wrap">
+<table>
+  <thead>
+    <tr><th>Was du tust</th><th>Was passiert</th><th>Wer es sieht</th><th>Wo es landet</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Diese Webseite besuchen</td>
+      <td>Dein Browser übermittelt automatisch deine IP-Adresse, den Browsertyp und die Uhrzeit</td>
+      <td>GitHub (US-Konzern, gehört zu Microsoft) und dessen Technikpartner Fastly (ebenfalls US-Firma)</td>
+      <td><strong>In die USA.</strong> Das lässt sich bei unserem jetzigen Aufbau nicht verhindern – wir sagen es lieber offen, statt es zu verschweigen</td>
+    </tr>
+    <tr>
+      <td>Das Farbschema wechseln</td>
+      <td>Deine Auswahl wird kurzzeitig im Speicher deines eigenen Browsers abgelegt („session storage“)</td>
+      <td>Nur du – dieser Speicher wird niemals an uns oder Dritte übermittelt</td>
+      <td>Es verschwindet automatisch, sobald du den Tab schließt</td>
+    </tr>
+    <tr>
+      <td>Uns eine E-Mail schreiben</td>
+      <td>Deine Absenderadresse, dein Name und dein Text liegen in unserem Postfach</td>
+      <td>Greensta (Öko-Hosting-Anbieter aus Bielefeld)</td>
+      <td>Auf Servern in <strong>Bielefeld, Deutschland</strong></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p>Was wir dazu noch sagen können:</p>
+<ul>
+  <li>Wir selbst sehen <strong>nicht</strong>, wer wann welche Seite aufruft. GitHub stellt uns die Zugriffsdaten auch nicht zur Verfügung.</li>
+  <li>Eine normale E-Mail ist technisch wie eine Postkarte: Sie passiert mehrere Rechner im Internet, bevor sie ankommt, und könnte unterwegs mitgelesen werden. Für sehr Persönliches fragst du uns lieber direkt, wie du es uns anders zukommen lassen kannst.</li>
+  <li>E-Mails löschen wir, sobald wir sie nicht mehr brauchen. Schreib uns, wenn wir eine bestimmte Mail löschen sollen – das machen wir sofort.</li>
+</ul>
+
+<h2>Deine Rechte</h2>
+<p>Du kannst von uns verlangen, ob wir etwas von dir gespeichert haben, und dass wir es löschen. Wir sind ein Verein, kein Konzern – schreib uns einfach, wir antworten jedem persönlich.</p>
+
+<p>Kontakt: <strong><a href="mailto:post@wohnzimmer-alfter.de">post@wohnzimmer-alfter.de</a></strong></p>
+
+<p>Für alle, die es ganz genau wissen wollen:
+  <a href="https://docs.github.com/site-policy/github-privacy-statement">Datenschutzerklärung von GitHub</a> ·
+  <a href="https://greensta.de/datenschutz">Datenschutzhinweise von Greensta</a>
+</p>
+
+<p><a href="/">← Zurück zur Startseite</a></p>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <img
+    src="assets/wohnzimmer-logo.jpg"
+    alt="Logo des Wohnzimmers Alfter"
+    width="447"
+    height="447"
+    loading="lazy"
+  >
+</footer>
+
+<script>
+const themeToggle = document.querySelector(".theme-toggle");
+const root = document.documentElement;
+const systemDark = window.matchMedia("(prefers-color-scheme: dark)");
+
+function currentTheme() {
+  return root.dataset.theme || (systemDark.matches ? "dark" : "light");
+}
+
+function updateThemeLabel() {
+  const label = currentTheme() === "dark"
+    ? "Hellen Modus aktivieren"
+    : "Dunklen Modus aktivieren";
+  themeToggle.setAttribute("aria-label", label);
+  themeToggle.title = label;
+}
+
+updateThemeLabel();
+
+themeToggle.addEventListener("click", () => {
+  const next = currentTheme() === "dark" ? "light" : "dark";
+  root.dataset.theme = next;
+  try {
+    sessionStorage.setItem("theme", next);
+  } catch (e) {
+    /* Wenn der Speicherzugriff verweigert wird, funktioniert das
+       Umschalten trotzdem; die Wahl bleibt dann nur bis zum
+       nächsten Neuladen erhalten. Das ist gewollt. */
+  }
+  updateThemeLabel();
+});
+
+systemDark.addEventListener("change", () => {
+  if (!root.dataset.theme) updateThemeLabel();
+});
+</script>
+
+</body>
+</html>
