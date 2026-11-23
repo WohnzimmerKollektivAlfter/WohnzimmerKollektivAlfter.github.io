@@ -14,6 +14,7 @@
   --color-accent:        light-dark(#ffa96b, #ffb477);
   --color-accent-hover:  light-dark(#ff9b4d, #ffc890);
   --color-link-hover:    light-dark(#8f4c16, #ffe0bd);
+  --nav-height: 56px;
 }
 
 :root[data-theme="light"] { color-scheme: light; }
@@ -197,7 +198,7 @@ main {
 
 section {
   padding-block: 70px;
-  scroll-margin-top: 56px;
+  scroll-margin-top: var(--nav-height);
   border-block-end: 1px solid var(--color-border);
 }
 
@@ -390,9 +391,14 @@ a:hover {
 }
 
 @media (max-width: 640px) {
+  :root {
+    --nav-height: 64px;
+  }
+
   nav {
     padding-block: 8px;
   }
+  
   .gallery,
   .contact-grid {
     grid-template-columns: 1fr;
