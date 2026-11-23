@@ -489,33 +489,33 @@ a:hover {
   /* Fallback für Browser ohne Popover-API: das JS steuert die
      Sichtbarkeit über die Klasse .open (siehe Script unten). */
 
-nav ul.open {
-  display: flex;
-  box-sizing: border-box;
-  position: absolute;
-  top: 100%;
-  bottom: auto;
-  left: 0;
-  right: 0;
-  flex-direction: column;
-  row-gap: 8px;
-  justify-content: flex-start;
-  flex-wrap: nowrap;
-  background: var(--color-background);
-  box-shadow: 0 4px 12px rgba(17, 24, 31, .12);
-  z-index: 1;
-  max-height: calc(100vh - 56px);
-  max-height: calc(100dvh - 56px);
-  overflow-y: auto;
-  overscroll-behavior-y: contain;
-  padding-block: 6px;
-  padding-inline: 8px;
-}
+  nav ul.open {
+    display: flex;
+    box-sizing: border-box;
+    position: absolute;
+    top: 100%;
+    bottom: auto;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    row-gap: 8px;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    background: var(--color-background);
+    box-shadow: 0 4px 12px rgba(17, 24, 31, .12);
+    z-index: 1;
+    max-height: calc(100vh - 56px);
+    max-height: calc(100dvh - 56px);
+    overflow-y: auto;
+    overscroll-behavior-y: contain;
+    padding-block: 6px;
+    padding-inline: 8px;
+  }
 
-nav ul.open.open-up {
-  top: auto;
-  bottom: 100%;
-}
+  nav ul.open.open-up {
+    top: auto;
+    bottom: 100%;
+  }
 
   nav ul.open a {
     padding-block: 10px;
