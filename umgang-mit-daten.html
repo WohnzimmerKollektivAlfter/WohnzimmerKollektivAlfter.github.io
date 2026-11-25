@@ -116,7 +116,7 @@
 <div class="table-wrap">
 <table>
   <thead>
-    <tr><th>Was du tust</th><th>Was passiert</th><th>Wer sie sieht</th><th>Wo sie landen</th></tr>
+    <tr><th>Was du tust</th><th>Was dann geschieht</th><th>Wer deine Daten sieht</th><th>Wo deine Daten landen</th></tr>
   </thead>
   <tbody>
     <tr>
@@ -129,15 +129,17 @@
         den Link, über den du gekommen bist („Referrer“).
       </td>
       <td>
-        GitHub und dessen Technikpartner Fastly – beides
-        Unternehmen aus den USA; GitHub gehört zum US-Konzern
-        Microsoft. Wie das Ganze technisch abläuft, findest du
-        direkt unter dieser Tabelle.
+        <strong>Fastly – meistens allein.</strong> Nur wenn Fastly
+        die Seite von den GitHub-Servern in den USA holen muss,
+        sieht auch GitHub deine Anfrage. Wie das genau abläuft,
+        findest du direkt unter dieser Tabelle.
       </td>
       <td>
-        <strong>Bei GitHub und Fastly.</strong> Was das bedeutet
-        und wie wir das einschätzen, findest du direkt unter
-        dieser Tabelle.
+        <strong>In der Regel auf einem Fastly-Server in Deutschland
+        (bei unseren Tests: München)</strong>. Manchmal muss Fastly
+        die Seite erst von den GitHub-Servern in den USA holen –
+        in welchen Fällen das passiert, steht direkt unter dieser
+        Tabelle.
       </td>
     </tr>
     <tr>
@@ -162,7 +164,7 @@
         unserem Postfach
       </td>
       <td>Greensta (Öko-Hosting-Anbieter aus Bielefeld)</td>
-      <td>Auf Servern in <strong>Bielefeld, Deutschland</strong></td>
+      <td><strong>Auf Servern von Greensta in Bielefeld (Deutschland)</strong></td>
     </tr>
   </tbody>
 </table>
@@ -182,19 +184,25 @@
 </p>
 
 <p>
-  Ausgeliefert wird die Seite von GitHub und dessen Technikpartner
-  Fastly – beides Unternehmen aus den USA; GitHub gehört zum
-  US-Konzern Microsoft. Beide sehen diese Angaben und führen sie in
-  ihren Server-Protokollen. Fastly hat auch Server in Deutschland;
-  welche Kopie der Seite du bekommst, lässt sich mit unserem Aufbau
-  aber nicht steuern. Wir sagen lieber offen, wie es ist, statt es
-  zu verschweigen.
+  Ausgeliefert wird die Seite von Fastly, einem US-Unternehmen,
+  das GitHub für die Auslieferung von GitHub Pages nutzt. GitHub
+  gehört zum US-Konzern Microsoft, beide Unternehmen sitzen in
+  den USA. Meist liegt die Seite am nächsten Fastly-Server schon
+  bereit und beantwortet deine Anfrage direkt von dort. In
+  unseren Tests war das ein Server in München. Nicht bereit
+  liegt sie vor allem in zwei Fällen: direkt nachdem wir etwas
+  an der Webseite geändert haben, und bei Aufrufen aus Regionen,
+  die andere Fastly-Server nutzen. Dann holt Fastly die Seite
+  von den GitHub-Servern in den USA nach. Erst in diesem Fall
+  erfährt GitHub von deinem Besuch. Beide Unternehmen sehen die Angaben
+  also nicht bei jedem Aufruf, aber möglich wäre es bei jedem einzelnen.
+  Wir sagen lieber offen, wie es ist, statt es zu verschweigen.
 </p>
 
 <p>
-  Wir selbst erhalten deine Zugriffsdaten nicht und sehen nicht,
-  wann du welche Seite aufrufst – all das liegt ausschließlich
-  bei GitHub und Fastly.
+  Wir selbst erhalten deine Zugriffsdaten nicht und sehen
+  nicht, wann du welche Seite aufrufst – all das liegt
+  ausschließlich bei GitHub und Fastly.
 </p>
 
 <p>
