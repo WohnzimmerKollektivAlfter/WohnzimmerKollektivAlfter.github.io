@@ -611,9 +611,9 @@ try {
 } catch (e) {
   /* Wenn der Speicherzugriff verweigert wird (z. B. wenn in den
      Browser-Einstellungen das Speichern von Daten deaktiviert ist),
-     funktioniert das Umschalten trotzdem; die Wahl bleibt dann nur
-     bis zum nächsten Neuladen erhalten. Das ist gewollt, daher ist
-     hier keine weitere Fehlerbehandlung nötig. */
+     funktioniert das Umschalten trotzdem – nur bleibt die Wahl dann
+     nicht über das Schließen des Tabs hinaus erhalten. Das ist
+     gewollt, daher ist hier keine weitere Fehlerbehandlung nötig. */
 }
   updateThemeLabel();
 });
